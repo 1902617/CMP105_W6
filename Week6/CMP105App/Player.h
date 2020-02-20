@@ -10,16 +10,19 @@ public:
 	~Player();
 
 	bool idleDir, isIdle;
-	int windowX, windowY;
+	float speed;
 	sf::Vector2f jumpVector, mousePos;
 
 
 	void update(float dt, int wX, int wY);
 	void handleInput(float dt, Input* i);
+	void idleCheck(float dt);
 	void idleLeft(float dt);
 	void idleRight(float dt);
 	void walkingRight(float dt);
 	void walkingLeft(float dt);
+
+	sf::Texture playerTexture;
 
 protected:
 	Animation walk;

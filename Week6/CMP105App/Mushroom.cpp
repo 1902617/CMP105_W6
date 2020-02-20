@@ -2,10 +2,8 @@
 
 Mushroom::Mushroom()
 {
-	mushTexture.loadFromFile("gfx/Mushroom.png");
-	setPosition(10, 10);
-	setScale(30, 30);
-	setTexture(&mushTexture);
+	scale = 0;
+	speed = 0;
 }
 
 Mushroom::~Mushroom()
@@ -13,7 +11,13 @@ Mushroom::~Mushroom()
 
 }
 
-void Mushroom::update(float dt)
+void Mushroom::update(float dt, int wX, int wY)
+{
+	Entity::update(dt, wX, wY);
+	moveToTarget(dt);
+}
+
+void Mushroom::moveToTarget(float dt)
 {
 
 }

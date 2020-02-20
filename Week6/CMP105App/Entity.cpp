@@ -3,8 +3,6 @@
 
 Entity::Entity()
 {
-	windowX = 0;
-	windowY = 0;
 	acceleration = 0.f;
 
 	// ----- Forces -----
@@ -25,10 +23,11 @@ void Entity::update(float dt, int wX, int wY)
 	stepVelocity += gravity * dt;
 	setPosition(getPosition() + pos);
 
-	if (getPosition().y >= windowY - getSize().y)
+	if (getPosition().y >= wY - getSize().y)
 	{
 		isJumping = false;
-		setPosition(getPosition().x, windowY - getSize().y);
+		setPosition(getPosition().x, wY - getSize().y);
 		stepVelocity = sf::Vector2f(0, 0);
 	}
+	//move(velocity * dt);
 }

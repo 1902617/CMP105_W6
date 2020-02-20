@@ -4,6 +4,7 @@
 #include "Framework/Input.h"
 #include <string.h>
 #include "Player.h"
+#include "Mushroom.h"
 #include <iostream>
 
 
@@ -25,8 +26,10 @@ private:
 	sf::RenderWindow* window;
 	Input* input;
 
-	sf::Texture playerTexture;
+	sf::Texture mushroomTexture;
+
 	Player player;
+	Mushroom enemyA;
 
 	// More level variables
 };

@@ -8,13 +8,15 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	// initialise game objects
 	
 	// ----- Textures -----
-	playerTexture.loadFromFile("gfx/ArcherSpriteSheet.png");
+	mushroomTexture.loadFromFile("gfx/Mushroom.png");
 	
 	// ----- Player -----
-	player.setSize(sf::Vector2f(90, 120)); // 18 x 24 base (this is 5x)
-	player.setPosition(300, 150);
-	player.setTexture(&playerTexture);
 	player.setInput(input);
+
+	// ----- Enemies -----
+	enemyA.setTexture(&mushroomTexture);
+	enemyA.setPosition(10, 10);
+	enemyA.setSize(sf::Vector2f(30, 30));
 }
 
 Level::~Level()
@@ -32,6 +34,7 @@ void Level::handleInput(float dt)
 void Level::update(float dt)
 {
 	player.update(dt, window->getSize().x, window->getSize().y);
+	enemyA.update(dt, window->getSize().x, window->getSize().y);
 }
 
 // Render level
@@ -40,6 +43,7 @@ void Level::render()
 	beginDraw();
 
 	window->draw(player);
+	window->draw(enemyA);
 
 	endDraw();
 }

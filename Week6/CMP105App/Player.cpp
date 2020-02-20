@@ -1,8 +1,13 @@
 #include "Player.h"
-#include <iostream>
 
 Player::Player()
 {
+	playerTexture.loadFromFile("gfx/ArcherSpriteSheet.png");
+
+	setSize(sf::Vector2f(90, 120)); // 18 x 24 base (this is 5x)
+	setPosition(300, 150);
+	setTexture(&playerTexture);
+
 	int y = 0, y2 = 25, w = 22, h = 25;
 
 	// ----- Idle Animation -----
@@ -22,8 +27,7 @@ Player::Player()
 
 	isIdle = true;
 	idleDir = false;
-	windowX = 0;
-	windowY = 0;
+	speed = 0.1f;
 	mousePos.x = 0.f;
 	mousePos.y = 0.f;
 
@@ -40,23 +44,7 @@ Player::~Player()
 void Player::update(float dt, int wX, int wY)
 {
 	Entity::update(dt, wX, wY);
-
-	if (isIdle && idleDir)
-	{
-		for (int i = 0; i <= 4; i++)
-		{
-			idleLeft(dt);
-		}
-	}
-	else if (isIdle && !idleDir)
-	{
-		for (int i = 0; i <= 4; i++)
-		{
-			idleRight(dt);
-		}
-	}
-
-	move(velocity*dt);
+	idleCheck(dt);
 }
 
 
@@ -67,7 +55,7 @@ void Player::handleInput(float dt, Input* i)
 		isIdle = false;
 		idleDir = false;
 		walkingRight(dt);
-		velocity = sf::Vector2f(2, 0);
+		move(speed, 0);
 	}
 
 	if (i->isKeyDown(sf::Keyboard::A))
@@ -75,7 +63,7 @@ void Player::handleInput(float dt, Input* i)
 		isIdle = false;
 		idleDir = true;
 		walkingLeft(dt);
-		velocity = sf::Vector2f(-2, 0);
+		move(-speed, 0);
 	}
 
 	if (!i->isKeyDown(sf::Keyboard::D) && !i->isKeyDown(sf::Keyboard::A))
@@ -100,6 +88,24 @@ void Player::handleInput(float dt, Input* i)
 		mousePos.y = i->getMouseY();
 		setPosition(mousePos);
 		stepVelocity = sf::Vector2f(0, 0);
+	}
+}
+
+void Player::idleCheck(float dt)
+{
+	if (isIdle && idleDir)
+	{
+		for (int i = 0; i <= 4; i++)
+		{
+			idleLeft(dt);
+		}
+	}
+	else if (isIdle && !idleDir)
+	{
+		for (int i = 0; i <= 4; i++)
+		{
+			idleRight(dt);
+		}
 	}
 }
 

@@ -1,17 +1,15 @@
 #pragma once
-#include "Framework/GameObject.h"
+#include "Entity.h"
 
-class Mushroom : public GameObject
+class Mushroom : public Entity
 {
 public:
 	Mushroom();
 	~Mushroom();
 
-	void update(float dt) override;
+	void update(float dt, int wX, int wY);
+	void moveToTarget(float dt);
 
-	float speed, scale, acceleration;
-	int windowX, windowY;
-	sf::Vector2f gravity, direction, velocity, stepVelocity, jumpVector;
-
-	sf::Texture mushTexture;
+	float speed, scale;
+	sf::Vector2f direction;
 };
