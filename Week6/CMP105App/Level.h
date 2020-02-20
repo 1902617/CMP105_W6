@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Framework/Input.h"
 #include <string.h>
+#include "Player.h"
 #include <iostream>
 
 
@@ -23,6 +24,9 @@ private:
 	// Default variables for level class.
 	sf::RenderWindow* window;
 	Input* input;
+
+	sf::Texture playerTexture;
+	Player player;
 
 	// More level variables
 };
