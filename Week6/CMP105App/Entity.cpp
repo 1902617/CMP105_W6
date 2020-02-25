@@ -23,11 +23,29 @@ void Entity::update(float dt, int wX, int wY)
 	stepVelocity += gravity * dt;
 	setPosition(getPosition() + pos);
 
-	if (getPosition().y >= wY - getSize().y)
+	if (getPosition().y >= wY - (getSize().y / 2))
 	{
 		isJumping = false;
-		setPosition(getPosition().x, wY - getSize().y);
+		setPosition(getPosition().x, wY - (getSize().y / 2));
 		stepVelocity = sf::Vector2f(0, 0);
 	}
-	//move(velocity * dt);
+	/*
+	if (getPosition().y <= 0 + (getSize().y / 2))
+	{
+		setPosition(getPosition().x, wY + (getSize().y / 2));
+		stepVelocity = sf::Vector2f(0, 0);
+	}
+
+	if (getPosition().x >= wX - (getSize().x / 2))
+	{
+		setPosition(wX - (getSize().y / 2), getPosition().x);
+		stepVelocity = sf::Vector2f(0, 0);
+	}
+
+	if (getPosition().x <= - + (getSize().x / 2))
+	{
+		setPosition(wX + (getSize().y / 2), getPosition().x);
+		stepVelocity = sf::Vector2f(0, 0);
+	}
+	*/
 }

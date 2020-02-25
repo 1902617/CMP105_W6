@@ -5,6 +5,8 @@
 #include <string.h>
 #include "Player.h"
 #include "Mushroom.h"
+#include "Projectile.h"
+#include "HeavyProjectile.h"
 #include <iostream>
 
 
@@ -27,9 +29,12 @@ private:
 	Input* input;
 
 	sf::Texture mushroomTexture;
+	sf::Texture sphereTexture;
 
 	Player player;
 	Mushroom enemyA;
+	Projectile sphereA;
+	HeavyProjectile ballA;
 
-	// More level variables
+	// More level variables#
 };

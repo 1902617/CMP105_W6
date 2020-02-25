@@ -8,8 +8,9 @@ public:
 	~Mushroom();
 
 	void update(float dt, int wX, int wY);
+	void handleInput(float dt, Input* i);
 	void moveToTarget(float dt);
 
-	float speed, scale;
-	sf::Vector2f direction;
+	float speed;
+	sf::Vector2f direction, target;
 };

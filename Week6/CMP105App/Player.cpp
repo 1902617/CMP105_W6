@@ -6,6 +6,7 @@ Player::Player()
 
 	setSize(sf::Vector2f(90, 120)); // 18 x 24 base (this is 5x)
 	setPosition(300, 150);
+	setOrigin(getSize().x / 2, getSize().y / 2);
 	setTexture(&playerTexture);
 
 	int y = 0, y2 = 25, w = 22, h = 25;
@@ -27,7 +28,7 @@ Player::Player()
 
 	isIdle = true;
 	idleDir = false;
-	speed = 0.1f;
+	speed = 200.f;
 	mousePos.x = 0.f;
 	mousePos.y = 0.f;
 
@@ -47,7 +48,6 @@ void Player::update(float dt, int wX, int wY)
 	idleCheck(dt);
 }
 
-
 void Player::handleInput(float dt, Input* i)
 {
 	if (i->isKeyDown(sf::Keyboard::D))
@@ -55,7 +55,7 @@ void Player::handleInput(float dt, Input* i)
 		isIdle = false;
 		idleDir = false;
 		walkingRight(dt);
-		move(speed, 0);
+		move(speed * dt, 0);
 	}
 
 	if (i->isKeyDown(sf::Keyboard::A))
@@ -63,7 +63,7 @@ void Player::handleInput(float dt, Input* i)
 		isIdle = false;
 		idleDir = true;
 		walkingLeft(dt);
-		move(-speed, 0);
+		move(-speed * dt, 0);
 	}
 
 	if (!i->isKeyDown(sf::Keyboard::D) && !i->isKeyDown(sf::Keyboard::A))
@@ -82,6 +82,7 @@ void Player::handleInput(float dt, Input* i)
 		velocity = sf::Vector2f(0, 0);
 	}
 
+	/*
 	if (i->isMouseLDown())
 	{
 		mousePos.x = i->getMouseX();
@@ -89,6 +90,7 @@ void Player::handleInput(float dt, Input* i)
 		setPosition(mousePos);
 		stepVelocity = sf::Vector2f(0, 0);
 	}
+	*/
 }
 
 void Player::idleCheck(float dt)
